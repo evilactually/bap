@@ -1,0 +1,353 @@
+\documentclass[12pt]{article}
+
+\usepackage{blindtext}
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\usepackage{geometry}[paper=letterpaper]
+
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[T1]{fontenc}
+
+\let\oldref\ref
+\renewcommand{\ref}[1]{(\oldref{#1})} % references in parathesis
+\renewcommand*\arraystretch{1.3} % extra vertical space in tables
+
+
+\newcommand{\dtoprule}{\specialrule{1pt}{0pt}{1.5pt}%
+            \specialrule{0.3pt}{0pt}{\belowrulesep}%
+            }
+\newcommand{\dbottomrule}{\specialrule{0.3pt}{2pt}{1.5pt}%
+            \specialrule{1pt}{0pt}{\belowrulesep}%
+            }
+
+
+
+% All styles and package and commands are defined here.
+% This allow to have one preambule used in all |/subfile| .
+%\usepackage{mystyle}
+
+\title{Calculus Bits and Pieces}
+\author{A. Nonym}
+
+
+
+\begin{document}
+
+\maketitle
+
+
+\vfil
+\eject
+
+\section{Arc Length}
+
+Consider a small \textsc{differential} piece of a \textsc{curve} $\,ds^2=\,dx^2+\,dy^2$. Then \textsc{length of the curve} on some interval is given by 
+
+
+\begin{equation}
+    L = \int_a^b\,ds.
+\end{equation}
+
+Which intuitively says that \textsc{length of a curve on an interval a to b is given by a sum of its differential segments}.
+
+\textsc{Substituting} $dx^2+\,dy^2$ for $ds$ and \textsc{rearranging} yields two possibilities:
+
+\begin{center}
+{
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{ccc}
+\dtoprule
+Function &  $ds$ & $L$ \\ \midrule[0.5pt]
+$ y = f(x)$  & $\sqrt {1 + {\bigl({dy \over dx} \bigr)}^2 }\,dx$  & $ \int_a^b\sqrt {1 + {\bigl({dy \over dx} \bigr)}^2 }\,dx$ \\
+$ x = f(y)$ & $\sqrt {{\bigl({dx \over dy} \bigr)}^2 + 1}\,dy$ & $\int_a^b\sqrt {{\bigl({dx \over dy} \bigr)}^2 + 1}\,dy$  \\
+\dbottomrule
+\end{tabular}
+}
+\end{center}
+
+\noindent\textbf{\textsc{Five step procedure to derive a formula for arc length of a curve in the wild}}:
+
+\begin{enumerate}
+  \item \textsc{Do remember} $L = \int_a^b\,ds.$
+  \item \textsc{Do remember} $ds = \sqrt{(dx^2 + dy^2)}$
+  \item \textsc{Factor out} $dx^2$ and \textsc{use it as differential} if the function is $ y = f(x)$
+  \item \textsc{OR Factor out} $dy^2$ and \textsc{use it as differential} if the function is $ x = f(y)$
+  \item \textsc{There's no step number five}
+\end{enumerate}
+
+\vfil
+\eject
+
+\section{Surface Area}
+
+If a \textsc{differential} segment $ds$ is \textsc{revolved} around $x$ or $y$ axis it will produce a \textsc{truncated cone} with a \textsc{surface area}
+
+\begin{equation}
+    2\pi r ds, 
+\end{equation}
+
+\noindent where $r$ is \textsc{distance from the curve to the axis of revolution} defined as
+
+\begin{center}
+{
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{ccc}
+\dtoprule
+Function &  Axis & $r$ \\ \midrule[0.5pt]
+$ y = f(x)$  & $x$ & $f(x)$ \\
+$ x = f(y)$  & $x$ & $y$    \\
+$ x = f(y)$  & $y$ & $f(y)$ \\
+$ y = f(x)$  & $y$ & $x$ \\
+\dbottomrule
+\end{tabular}
+}
+\end{center}
+
+\textsc{Integrating} $2\pi r ds$ yields area of the \textsc{surface produced by revolving a segment of a curve on the interval $a$ to $b$}
+
+\begin{equation}
+    A = 2\pi\int_a^b r \,ds.
+\end{equation}
+
+\textsc{Replacing} $r$ and $ds$ yields the \textsc{four formulas for calculating surface areas}:
+
+\begin{center}
+{
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{cccll}
+\dtoprule
+Function &  Axis & $r$          & $A$ with $r$ replaced           &  $A$ with $ds$ replaced          \\ \midrule[0.5pt]
+$ y = f(x)$  & $x$ & $f(x)$     & $A = 2\pi\int_a^b f(x) \,ds$    &  $A = 2\pi\int_a^b f(x) \sqrt {1 + {\bigl({dy \over dx} \bigr)}^2 }\,dx$    \\
+$ x = f(y)$  & $x$ & $y$        & $A = 2\pi\int_a^b y \,ds$       &  $A = 2\pi\int_a^b y \sqrt {{\bigl({dx \over dy} \bigr)}^2 + 1}\,dy$    \\
+$ x = f(y)$  & $y$ & $f(y)$     & $A = 2\pi\int_a^b f(y) \,ds$    &  $A = 2\pi\int_a^b f(y) \sqrt {{\bigl({dx \over dy} \bigr)}^2 + 1}\,dy$    \\ 
+$ y = f(x)$  & $y$ & $x$        & $A = 2\pi\int_a^b x \,ds$       &  $A = 2\pi\int_a^b x \sqrt {1 + {\bigl({dy \over dx} \bigr)}^2 }\,dx$    \\
+\dbottomrule
+\end{tabular}
+}
+\end{center}
+
+\vfil
+\eject
+
+The above table can be reduced to just a few steps, allowing you to recreate it from minimum amount of information. \\
+
+\noindent\textbf{\textsc{Procedure to derive a formula for surface area in the wild}}:
+
+\renewcommand{\labelenumii}{\roman{enumii}} 
+
+\begin{enumerate}
+  \item \textsc{Do remember} $A = 2\pi\int_a^b r \,ds.$
+  \item \textsc{Replace} $r$ with an expression of \textsc{independent variable} that would \textsc{represent the distance between the curve and axis}
+  \item \textsc{Replace} $ds$(same as arc length):
+  \begin{enumerate}
+    \item \textsc{Do remember} $ds = \sqrt{(dx^2 + dy^2)}$
+    \item \textsc{Factor out} $dx^2$ and \textsc{use it as differential} if the function is $ y = f(x)$
+    \item \textsc{OR Factor out} $dy^2$ and \textsc{use it as differential} if the function is $ x = f(y)$
+  \end{enumerate}
+\end{enumerate}
+
+\section{Derivatives}
+
+\subsection{Example: Motion of a Particle}
+
+We are given an equation describing law of motion of a particle $s(t)=t^4-6t^3+4t^2+3$ where $t>=0$. To find its velocity we need to derivate  the function $s(t)$ with respect to $t$:
+
+\begin{equation}
+s(t)'=4\times t^3-6\times3t^2+4\times2t^1+0\times3 
+\end{equation}
+\begin{equation} \label{eq:1}
+s(t)'=4t^3 - 18t^2 + 8t^2
+\end{equation}
+
+To find the derivative $s(t)'$ above we made use of power rule from calculus which states:
+
+\begin{equation}
+(X^N)'=N\times x^{N-1}
+\end{equation}
+
+By substituting $0$ into equation \ref{eq:1} we can find the velocity of the particle at the $t=0$:
+
+\begin{equation}
+s(0)'=4\times0^3 - 18\times0^2 = 0
+\end{equation}
+
+The particle is at rest when $s(t)'=0$. To find time $t$ when this happens we let $s(t)'=0$ and solve for $t$: 
+
+\begin{equation} 
+s(x)'=4t^3 - 18t^2 + 8t=0
+\end{equation}
+
+This is a cubic equation, but we can solve it by factoring out $t$:
+
+\begin{equation} 
+s(x)'=t(4t^2 - 18t + 8)=0
+\end{equation}
+
+If the product of two factors equals zero then either or both factors must be zero for that to be true.
+\begin{align}
+t = 0 && 4t^2 - 18t + 8 = 0 \\
+      && t_1 = 4, t_2=\frac{1}{2}
+\end{align}
+
+The particle is at rest at $t=0, \frac{1}{2}, 4$. We can evaluate $s(t)'$ on each of the time intervals to find signs of $s(t)'$(and whenever the particle's distance is {\it increasing} or {\it decreasing}):
+
+\medskip
+\begin{center}
+\begin{tabular}{l{l}{c}}
+Interval           & $s(t)'$  & Sign of $s(t)'$ \\
+\hline
+$(-\infty,0)$      & $s(-1)=-30$      & $-$ \\ 
+$(0,\frac{1}{2})$  & $s(0.25)=0.9375$ & $+$ \\ 
+$(\frac{1}{2}, 4)$ & $s(1)=-6$        & $-$ \\ 
+$(4,+\infty)$      & $s(5)=90$        & $+$ \\ 
+\end{tabular}
+\end{center}
+
+\vfil
+\eject
+Plotting $s(t)$ and $s(t)'$ confirms the behavior of the function:
+
+\begin{center}
+\pgfplotsset{width=15cm,compat=1.16}
+
+\begin{tikzpicture}
+\label{fig:1}
+\begin{axis}[
+    axis lines = left,
+    xlabel = $t$,
+    ylabel = {$s(t)$},
+    axis x line=center,
+    axis y line=center,
+    xmin=-1,
+    xmax=10,
+    ymin=-70,
+    ymax=30,
+    restrict y to domain=-70:30
+]
+%Below the red parabola is defined
+\addplot [
+    domain=-10:10, 
+    samples=1000, 
+    color=red,
+]
+{x^4-6*x^3+4*x^2+3};
+\addlegendentry{$s(t)=t^4-6t^3+4t^2+3$}
+Here the blue parabloa is defined
+\addplot [
+    domain=-10:10, 
+    samples=1000, 
+    color=blue,
+    ]
+    {4*x^3 - 18*x^2 + 8*x};
+\addplot [only marks,mark=*,color=blue] coordinates { (0,0) (0.5,0) (4,0)  };
+\addlegendentry{$s(t)'=4t^3 - 18t^2 + 8t$}
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Examining the graph we see that $s(t)$ is flat whenever $s(t)'$ crosses the $x$ axis, meaning the particle stays at rest at those points. 
+We can also see that $s(t)$ is {\it decreasing} whether $s(t)'$ is below the $x$ axis and {\it increasing} whenever $s(t)'$ is above the $x$ axis.
+
+Let $D$ be the {\it total distance} traveled by the particle after 6 seconds. To calculate $D$ we need to sum up distances traveled by the particle on the intervals $(0,\frac{1}{2})$, $(\frac{1}{2}, 4)$, $(4,6)$:
+\begin{equation}
+D_{6 sec} = | f(\frac{1}{2}) - f(0) | + | f(4) - f(\frac{1}{2}) | + | f(6) - f(4) |
+\end{equation}
+
+\begin{equation} 
+D_{6 sec} = 0.3125 + 64.3125 + 208 = 272.625
+\end{equation}
+
+
+\vfil
+\eject
+By differentiating $s(t)$ one more time we get expression for acceleration of the particle, from which we can also find $s(0)''$:
+
+\begin{equation} 
+s(x)''=12t^2 - 36t + 8
+\end{equation}
+
+\begin{equation} 
+s(0)''=12\times0^2 - 36\times0 + 8 = 8
+\end{equation}
+
+To perform sign analysis of $s(t)''$ we need to know the values of $t$ where it crosses the $x$ axis. Let $s(t)''=0$ and solve for $t$:
+\begin{align} 
+s(x)''=12t^2 - 36t + 8 = 0 \\
+4(3t^2 - 9t + 2) = 0 \\
+t_1 = \frac{9+\sqrt{57}}{6}\approx2.76, t_2 = \frac{9-\sqrt{57}}{6}\approx0.24
+\end{align}
+
+Velocity of the particle is not changing at $t=0.24, 2.76$. We can evaluate $s(t)''$ on each of the time intervals to find signs of $s(t)''$(and whether the particle is {\it accelerating} or {\it decelerating} on each of them):
+
+\medskip
+
+\begin{center}
+\begin{tabular}{l{l}{c}}
+Interval           & $s(t)''$  & Sign of $s(t)''$ \\
+\hline
+$(-\infty,\frac{9-\sqrt{57}}{6})$      & $s(-1)=56$ & $+$ \\ 
+$(\frac{9-\sqrt{57}}{6},\frac{9+\sqrt{57}}{6})$  & $s(1)=-16$ & $-$ \\ 
+$(\frac{9+\sqrt{57}}{6}, +\infty)$     & $s(3)=8$  & $+$ \\ 
+\end{tabular}
+\end{center}
+
+The particle is {\it accelerating} on the intervals $(-\infty,0.24)$ and $(2.76, +\infty)$. The particle is {\it decelerating} 
+on $(0.24,2.76)$. 
+
+\vfil
+\eject
+The graph confirms this behavior:
+
+\begin{center}
+\pgfplotsset{width=15cm,compat=1.16}
+
+\begin{tikzpicture}
+\label{fig:1}
+\begin{axis}[
+    axis lines = left,
+    xlabel = $t$,
+    ylabel = {$s(t)$},
+    axis x line=center,
+    axis y line=center,
+    xmin=-1,
+    xmax=10,
+    ymin=-70,
+    ymax=30,
+    restrict y to domain=-70:30
+]
+%Below the red parabola is defined
+\addplot [
+    domain=-10:10, 
+    samples=1000, 
+    color=red,
+]
+{x^4-6*x^3+4*x^2+3};
+\addlegendentry{$s(t)=t^4-6t^3+4t^2+3$}
+Here the blue parabloa is defined
+\addplot [
+    domain=-10:10, 
+    samples=1000, 
+    color=blue,
+    ]
+    {4*x^3 - 18*x^2 + 8*x};
+
+\addlegendentry{$s(t)'=4t^3 - 18t^2 + 8t$}
+\addplot [
+    domain=-10:10, 
+    samples=1000, 
+    color=green,
+]
+{12*x^2 - 36*x + 8 };
+\addlegendentry{$s(t)''=12t^2 - 36t + 8 $}
+\addplot [only marks,mark=*,color=blue] coordinates { (0,0) (0.5,0) (4,0)  };
+\addplot [only marks,mark=*,color=green] coordinates { (0.24169,0) (2.75831,0) };
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Examining the graph we see that $s(t)'$ is flat whenever $s(t)''$ is crossing the $x$ axis, meaning the particle is not accelerating 
+at those points. We also see that the particle is {\it accelerating} whenever $s(t)''$ is above the $x$ axis and {\it decelerating} whenever $s(t)''$ is below the $x$ axis.
+
+\end{document}
