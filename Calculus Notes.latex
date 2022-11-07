@@ -350,4 +350,28 @@ Here the blue parabloa is defined
 Examining the graph we see that $s(t)'$ is flat whenever $s(t)''$ is crossing the $x$ axis, meaning the particle is not accelerating 
 at those points. We also see that the particle is {\it accelerating} whenever $s(t)''$ is above the $x$ axis and {\it decelerating} whenever $s(t)''$ is below the $x$ axis.
 
+
+\vfill
+\eject
+
+\section{Multiple Integrals}
+
+\subsection{Surface Area}
+
+\begin{equation} 
+%\iint\limits_{D} \sqrt{f_x(x,y)^2 + f_y(x,y)^2 + 1} \,dA
+A=\iint\limits_{D} \sqrt{\left(\frac{\partial{z}}{\partial{x}}\right)^2 + \left(\frac{\partial{z}}{\partial{y}}\right)^2 + 1} \,dA
+\end{equation}
+
+Or
+
+\begin{equation} 
+A=\iint\limits_{D} \sqrt{f_x(x,y)^2 + f_y(x,y)^2 + 1} \,dA
+\end{equation}
+
+\begin{enumerate}
+  \item \textsc{Compute partial derivatives} $f_x$ \textsc{and} $f_y$.
+  \item \textsc{Evaluate double integral above}
+\end{enumerate}
+
 \end{document}
