@@ -1,0 +1,124 @@
+\documentclass[12pt]{article}
+
+\usepackage{blindtext}
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\usepackage{geometry}[paper=letterpaper]
+
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[T1]{fontenc}
+
+\let\oldref\ref
+\renewcommand{\ref}[1]{(\oldref{#1})} % references in parathesis
+\renewcommand*\arraystretch{1.3} % extra vertical space in tables
+
+
+\newcommand{\dtoprule}{\specialrule{1pt}{0pt}{1.5pt}%
+            \specialrule{0.3pt}{0pt}{\belowrulesep}%
+            }
+\newcommand{\dbottomrule}{\specialrule{0.3pt}{2pt}{1.5pt}%
+            \specialrule{1pt}{0pt}{\belowrulesep}%
+            }
+
+
+
+% All styles and package and commands are defined here.
+% This allow to have one preambule used in all |/subfile| .
+%\usepackage{mystyle}
+
+\title{EE Bits and Pieces}
+\author{A. Nonym}
+
+
+
+\begin{document}
+
+%\maketitle
+
+
+\vfil
+\eject
+
+\section{Power}
+
+When we say power we usually are talking about \textsc{average power}. For DC circuits it is nothing but $ P = VA$, for AC circuits average is an integral of instanteneous voltage $v(t)$ and $i(t)$:
+
+\begin{equation}\label{eq:100}
+    P_{avg} = \frac{1}{T}\int_0^T v(t) i(t) \,dt.
+\end{equation}
+
+Also, specifically for RLC circuit it can be shown
+
+
+\begin{equation}
+    P_{avg} = (V_{rms} \times I_{rms}) cos\phi
+\end{equation}
+
+Here, $\phi$ is the angle between voltage and current phasor vectors(assumed constant). The product $(V_{rms} \times I_{rms})$ is the easily measurable quantity obtained by any DMM. On the other hand neither $\phi$ nor $P_{avg}$ are easily measurable. 
+
+\medskip
+\begin{center}
+The term $VA = (V_{rms} \times I_{rms})$ is called \textsc{apparent power}. 
+\end{center}
+
+\medskip
+\begin{center}
+The term $cos\phi$ is called \textsc{power factor(PF).}
+\end{center}
+
+\begin{equation}
+ P_{avg} = VA \times PF
+\end{equation}
+
+
+% P 
+% real energy consumption
+% total power of the system
+
+% VA
+% real current consumption
+% does not add in general
+
+
+
+When we talk about {\it power factors}, we are assuming it can be represented by an equivalent RLC circuit(which may not always be realistic). \textsc{If we did know what RLC circuit it was we could calculate power factor directly}:
+
+\begin{equation}
+    \phi = tan^{-1} \bigl( \frac{X_{L} - X_{C}}{R} \bigr), PF = cos \phi
+\end{equation}
+
+Power factor relates easily "measurable" apparent power $VA$ term to the less tangible $P_{avg}$.
+
+Calculating power factor requires either computing integral from \ref{eq:100} or finding average power by some other means. Then
+
+\begin{equation}
+  PF = \frac{P_{avg}}{VA}
+\end{equation}
+
+
+
+\vfil
+\eject
+
+
+P versus VA.
+
+\begin{center}
+{
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{rcc}
+\dtoprule
+                                      &  VA         & P  \\ \midrule[0.5pt]
+\textsc{measuring}                    &  GREAT      & OK \\
+\textsc{estimate total system power}  &  NOT GREAT  & GREAT \\
+\textsc{pay power bills}              &  NOT GREAT  & GREAT \\
+\textsc{estimate heat}                &  NOT GREAT  & GREAT \\
+\textsc{estimate device current draw} &  GREAT      & NOT GREAT   \\
+\textsc{estimate system current draw} & NOT GREAT   & OK \\
+\dbottomrule
+\end{tabular}
+}
+\end{center}
+
+\end{document}

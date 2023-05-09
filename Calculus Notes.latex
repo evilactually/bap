@@ -147,6 +147,38 @@ The above table can be reduced to just a few steps, allowing you to recreate it 
   \end{enumerate}
 \end{enumerate}
 
+\section{Techniques of Integration}
+
+\subsection{Integration By Parts}
+
+Integration by parts is a technique that uses the following relation between two integrals:
+
+\begin{equation}
+\int{u}\,dv = uv + \int{v}\,du 
+\end{equation}
+
+The relation comes from product rule. Suppose we have a product of two functions $f(x)g(x)$. Differentiate both sides:
+
+\begin{equation}
+(f(x)g(x))' = f(x)'g(x) + f(x)g(x)'
+\end{equation}
+
+Integrate both sides:
+
+\begin{equation}
+\int(f(x)g(x))'\,dx = \int{f(x)'g(x)}\,dx + \int{f(x)g(x)'}\,dx
+\end{equation}
+
+
+\begin{equation}
+f(x)g(x) = \int{f(x)'g(x)}\,dx + \int{f(x)g(x)'}\,dx
+\end{equation}
+
+
+
+
+
+
 \section{Derivatives}
 
 \subsection{Example: Motion of a Particle}
